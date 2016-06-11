@@ -194,7 +194,7 @@
         for (var tagnum = 0; tagnum < dom.length; tagnum++) {
             var tag_class = dom[tagnum].className;
 
-            if (tag_class.length() && tag_class.split(" ").indexOf('addtocalendar') != -1) {
+            if (tag_class.length && tag_class.split(" ").indexOf('addtocalendar') != -1) {
 
                 var settings = addtocalendar.loadSettings(dom[tagnum]);
 
