@@ -304,5 +304,4 @@
             }
         }
     });
-    addtocalendar.load();
 })(window, document);

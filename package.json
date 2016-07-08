@@ -2,7 +2,7 @@
   "name": "addtocalendar",
   "version": "1.5.3",
   "description": "Free customizable widget \\\"Add to Calendar\\\" for event page. It allows users to easily schedule the event in their calendar.",
-  "main": "atc.min.js",
+  "main": "addtocalendar.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
