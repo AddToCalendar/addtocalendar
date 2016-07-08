@@ -177,7 +177,7 @@
         return settings;
     };
 
-    addtocalendar.load = ready(function () {
+    ready(function () {
 
         var calendarsUrl = {
             'iCalendar':'ical',
