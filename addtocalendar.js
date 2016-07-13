@@ -1,3 +1,31 @@
+/* http://addtocalendar.com/ 
+ * 
+ * 
+The MIT License (MIT)
+
+Copyright (c) 2015 AddToCalendar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+ */
+
+
           (function (w, d) {
               var
                   atc_url = '//addtocalendar.com/atc/',
@@ -149,6 +177,8 @@
 
                       // Added extensibility for bootstrap support.
                       'dropdownLinkClass': 'atcb-link',
+                      'dropdownLinkAttrs': [], // { key: 'data-toggle', value: 'dropdown' }
+
                       'dropdownMenuClass': 'atcb-list',
                       'dropdownMenuType': 'ul', // ul, div
                       'dropdownMenuItemClass': 'atcb-item',
@@ -276,20 +306,19 @@
 
 
 
-                              if (settings['dropdownMenuItemType'] != 'none') {
-                                  menu_links += '<' + settings['dropdownMenuItemType'] + ' class="' + settings['dropdownMenuItemClass'] + '">'; // Create link with wrapper.
-                              }
+                              if (settings['dropdownMenuItemType'] != 'none') { menu_links += '<' + settings['dropdownMenuItemType'] + ' class="' + settings['dropdownMenuItemClass'] + '">'; } // Create link with wrapper.
+
+                              
 
                               menu_links +=
-                                  '<a ' + atcb_cal_link_id + ' class="' + settings['dropdownMenuItemLinkClass'] + '" href="'
+                                  '<a ' + atcb_cal_link_id + ' class="' + settings['dropdownMenuItemLinkClass'] + '" ' + ((settings['dropdownLinkAttrs'] != undefined && settings['dropdownLinkAttrs'].length > 0)?(
+                                  Object.keys(settings['dropdownLinkAttrs']).forEach(function(key) { console.log(key);})):'') + ' href="'
                                   + (cal_id == 'ical' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream ? 'webcal:' : protocol)
                                   + atc_url + cal_id + '?' + url_paramteres.join('&')
                                   + '" target="_blank">' + settings['calendars'][cnum]
                                   + '</a>';
 
-                               if (settings['dropdownMenuItemType'] != 'none') {
-                                   menu_links += '</li>'; // Create link with wrapper.
-                               }
+                               if (settings['dropdownMenuItemType'] != 'none') { menu_links += '</' + settings['dropdownMenuItemType'] + '>'; } // Create link with wrapper.
                               
 
 
