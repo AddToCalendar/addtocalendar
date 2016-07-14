@@ -1,31 +1,3 @@
-/* http://addtocalendar.com/ 
- * 
- * 
-The MIT License (MIT)
-
-Copyright (c) 2015 AddToCalendar
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
- */
-
-
           (function (w, d) {
               var
                   atc_url = '//addtocalendar.com/atc/',
@@ -140,6 +112,14 @@ SOFTWARE.
                   }
               }(w, d);
 
+              Object.size = function (obj) {
+                  var size = 0, key;
+                  for (key in obj) {
+                      if (obj.hasOwnProperty(key)) size++;
+                  }
+                  return size;
+              };
+
               if (w.addtocalendar && typeof w.addtocalendar.start == "function") return;
               if (!w.addtocalendar) w.addtocalendar = {};
 
@@ -176,14 +156,13 @@ SOFTWARE.
                       'secure': 'auto',
 
                       // Added extensibility for bootstrap support.
-                      'dropdownLinkClass': 'atcb-link',
+                      'dropdownLinkClass': 'atcb-link', // btn btn-secondary dropdown-toggle
                       'dropdownLinkAttrs': [], // { key: 'data-toggle', value: 'dropdown' }
-
-                      'dropdownMenuClass': 'atcb-list',
+                      'dropdownMenuClass': 'atcb-list', // dropdown-menu
                       'dropdownMenuType': 'ul', // ul, div
-                      'dropdownMenuItemClass': 'atcb-item',
+                      'dropdownMenuItemClass': '', 
                       'dropdownMenuItemType': 'li', // li, div, none
-                      'dropdownMenuItemLinkClass': 'atcb-item-link',
+                      'dropdownMenuItemLinkClass': 'atcb-item-link', // dropdown-item 
                       'on-button-click':function(){},
                       'on-calendar-click':function(){}
                   };
@@ -191,24 +170,48 @@ SOFTWARE.
                   for (var option in settings){
                       var pname = 'data-' + option;
                       var eattr = element.getAttribute(pname);
-                      if(eattr != null){
 
-                          if(isArray(settings[option])){
-                              settings[option] = eattr.replace(/\s*,\s*/g,',').replace(/^\s+|\s+$/g, '').split(',');
-                              continue;
-                          }
+                      
+                      if (eattr != null) {
+                          console.log(eattr);
 
-                          if(isFunc(settings[option])){
-                              var fn = window[eattr];
-                              if(isFunc(fn)) {
-                                  settings[option]=fn;
-                              }else {
-                                  settings[option]=eval('(function(mouseEvent){'+eattr+'})');
+                          // convert string to array.
+                          if (pname == 'data-dropdownLinkAttrs') {
+
+                              // JavaScript array of JavaScript objects
+                              var objs = eattr.replace(/([a-zA-Z0-9]+?):/g, '"$1":');
+                              objs = objs.replace(/'/g, '"');
+                              var data = JSON.parse(objs);
+                              //console.log('----------------------');
+                              console.log(data);
+                              console.log(data.length);
+                              //console.log('----------------------');
+
+                              eattr = data;
+                              settings[option] = eattr;
+                          } else {
+
+                              if (isArray(settings[option])) {
+                                  settings[option] = eattr.replace(/\s*,\s*/g, ',').replace(/^\s+|\s+$/g, '').split(',');
+                                  continue;
                               }
-                              continue;
-                          }
 
-                          settings[option]=element.getAttribute(pname);
+                              if (isFunc(settings[option])) {
+                                  var fn = window[eattr];
+                                  if (isFunc(fn)) {
+                                      settings[option] = fn;
+                                  } else {
+                                      settings[option] = eval('(function(mouseEvent){' + eattr + '})');
+                                  }
+                                  continue;
+                              }
+
+                              settings[option] = element.getAttribute(pname);
+
+                          }
+                          
+
+                          
                       }
                   }
 
@@ -308,18 +311,15 @@ SOFTWARE.
 
                               if (settings['dropdownMenuItemType'] != 'none') { menu_links += '<' + settings['dropdownMenuItemType'] + ' class="' + settings['dropdownMenuItemClass'] + '">'; } // Create link with wrapper.
 
-                              
+                           
 
                               menu_links +=
-                                  '<a ' + atcb_cal_link_id + ' class="' + settings['dropdownMenuItemLinkClass'] + '" ' + ((settings['dropdownLinkAttrs'] != undefined && settings['dropdownLinkAttrs'].length > 0)?(
-                                  Object.keys(settings['dropdownLinkAttrs']).forEach(function(key) { console.log(key);})):'') + ' href="'
+                                  '<a ' + atcb_cal_link_id + ' class="' + settings['dropdownMenuItemLinkClass'] + '"  href="'
                                   + (cal_id == 'ical' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream ? 'webcal:' : protocol)
                                   + atc_url + cal_id + '?' + url_paramteres.join('&')
                                   + '" target="_blank">' + settings['calendars'][cnum]
                                   + '</a>';
-
                                if (settings['dropdownMenuItemType'] != 'none') { menu_links += '</' + settings['dropdownMenuItemType'] + '>'; } // Create link with wrapper.
-                              
 
 
                           }
@@ -331,6 +331,14 @@ SOFTWARE.
                               atcb_link.innerHTML = atc_button_title;
                               atcb_link.id = atcb_link_id_val;
                               atcb_link.tabIndex = 1;
+
+                              if (settings['dropdownLinkAttrs'] != undefined && settings['dropdownLinkAttrs'].length > 0) {
+                                  for (i = 0; i < settings['dropdownLinkAttrs'].length; ++i) {
+                                      //console.log('*******************************');
+                                      atcb_link.setAttribute(settings['dropdownLinkAttrs'][i].key, settings['dropdownLinkAttrs'][i].value)                                      
+                                  }
+                              }
+
 
                               dom[tagnum].appendChild(atcb_link);
                               dom[tagnum].appendChild(atcb_list);
