@@ -1,7 +1,7 @@
 AddToCalendar
 =============
 
-This is a fork from http://addtocalendar.com.
+This is a fork from https://github.com/AddToCalendar/addtocalendar
 
 I added some data properties so that I could add this gracefully into my bootstrap framework.
 
