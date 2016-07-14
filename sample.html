@@ -1,6 +1,6 @@
 <!--
   AddToCalendar
-	Free customizable JavaScript widget "Add to Calendar" for event page. 
+	Free customizable JavaScript widget "Add to Calendar" for event page.
 	It allows users to easily schedule the event in their calendar.
 	Learn more: http://addtocalendar.com
 -->
@@ -14,63 +14,88 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-  
+
     <!-- 1. Include style -->
     <link href="http://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
-    
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    
-    
-    <!-- 3. Place event data (ORIGIONAL Template) -->
-    <span class="addtocalendar atc-style-blue">
-        <var class="atc_event">
-            <var class="atc_date_start">2014-05-04 12:00:00</var>
-            <var class="atc_date_end">2014-05-04 18:00:00</var>
-            <var class="atc_timezone">Europe/London</var>
-            <var class="atc_title">Star Wars Day Party</var>
-            <var class="atc_description">May the force be with you</var>
-            <var class="atc_location">Tatooine</var>
-            <var class="atc_organizer">Luke Skywalker</var>
-            <var class="atc_organizer_email">luke@starwars.com</var>
-        </var>
-    </span>
-    
-    
-    <!-- 4. Place event data (NEW Properties) -->
-    <div class="addtocalendar btn-group"
-         data-calendars="iCalendar, Google Calendar, Outlook"
-         data-dropdownLinkClass="btn btn-secondary dropdown-toggle"
-         data-dropdownLinkAttrs="[{'key':'data-toggle','value':'dropdown'}]"
-         data-dropdownMenuClass="dropdown-menu"
-         data-dropdownMenuType="div"
-         data-dropdownMenuItemClass=""
-         data-dropdownMenuItemType="none"
-         data-dropdownMenuItemLinkClass="dropdown-item">
 
-        <var class="atc_event hidden">
-            <var class="atc_date_start">2014-05-04 12:00:00</var>
-            <var class="atc_date_end">2014-05-04 18:00:00</var>
-            <var class="atc_timezone">America/Los_Angeles</var>
-            <var class="atc_title">Star Wars Day Party</var>
-            <var class="atc_description">May the force be with you</var>
-            <var class="atc_location">Tatooine</var>
-            <var class="atc_organizer">Luke Skywalker</var>
-            <var class="atc_organizer_email">luke@starwars.com</var>
-        </var>
+  </head>
+<body>
+    <h1>Hello, world!</h1>
+
+
+    <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+        <a class="navbar-brand" href="#">Add To Calendar</a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="https://github.com/MickeyElliott/addtocalendar">Github</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>AddToCalendar</h1>
+                <p class="lead">
+                    This is a fork from https://github.com/AddToCalendar/addtocalendar. I added some data properties so that I could add this gracefully into my bootstrap framework. Free customizable JavaScript widget "Add to Calendar" for event page. It allows users to easily schedule the event in their calendar. Learn more: http://addtocalendar.com
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Origional Template</h3>
+
+                <span class="addtocalendar atc-style-blue">
+                    <var class="atc_event">
+                        <var class="atc_date_start">2014-05-04 12:00:00</var>
+                        <var class="atc_date_end">2014-05-04 18:00:00</var>
+                        <var class="atc_timezone">Europe/London</var>
+                        <var class="atc_title">Star Wars Day Party</var>
+                        <var class="atc_description">May the force be with you</var>
+                        <var class="atc_location">Tatooine</var>
+                        <var class="atc_organizer">Luke Skywalker</var>
+                        <var class="atc_organizer_email">luke@starwars.com</var>
+                    </var>
+                </span>
+
+            </div>
+
+            <div class="col-md-6">
+                <h3>Bootstrap Template</h3>
+
+                <div class="addtocalendar btn-group"
+                     data-calendars="iCalendar, Google Calendar, Outlook"
+                     data-dropdownLinkClass="btn btn-secondary dropdown-toggle"
+                     data-dropdownLinkAttrs="[{'key':'data-toggle','value':'dropdown'}]"
+                     data-dropdownMenuClass="dropdown-menu"
+                     data-dropdownMenuType="div"
+                     data-dropdownMenuItemClass=""
+                     data-dropdownMenuItemType="none"
+                     data-dropdownMenuItemLinkClass="dropdown-item">
+                    <var class="atc_event hidden">
+                        <var class="atc_date_start">2014-05-04 12:00:00</var>
+                        <var class="atc_date_end">2014-05-04 18:00:00</var>
+                        <var class="atc_timezone">America/Los_Angeles</var>
+                        <var class="atc_title">Star Wars Day Party</var>
+                        <var class="atc_description">May the force be with you</var>
+                        <var class="atc_location">Tatooine</var>
+                        <var class="atc_organizer">Luke Skywalker</var>
+                        <var class="atc_organizer_email">luke@starwars.com</var>
+                    </var>
+                </div>
+
+
+            </div>
+        </div>
+
     </div>
-    
-    
-    
-    
 
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-  
     <!-- 5. Include script -->
     <script src="addtocalendar.js"></script>
-  
-  </body>
+</body>
 </html>
