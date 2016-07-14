@@ -4,23 +4,26 @@
 	It allows users to easily schedule the event in their calendar.
 	Learn more: http://addtocalendar.com
 -->
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+  
     <!-- 1. Include style -->
     <link href="http://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <!-- 2. Include script -->
-    <script type="text/javascript">(function () {
-            if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
-            if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
-                var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-                s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
-                s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
-                var h = d[g]('body')[0];h.appendChild(s); }})();
-    </script>
-
-    <!-- 3. Place event data -->
+    
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    
+    
+    <!-- 3. Place event data (ORIGIONAL Template) -->
     <span class="addtocalendar atc-style-blue">
         <var class="atc_event">
             <var class="atc_date_start">2014-05-04 12:00:00</var>
@@ -33,5 +36,41 @@
             <var class="atc_organizer_email">luke@starwars.com</var>
         </var>
     </span>
-</body>
+    
+    
+    <!-- 4. Place event data (NEW Properties) -->
+    <div class="addtocalendar btn-group"
+         data-calendars="iCalendar, Google Calendar, Outlook"
+         data-dropdownLinkClass="btn btn-secondary dropdown-toggle"
+         data-dropdownLinkAttrs="[{'key':'data-toggle','value':'dropdown'}]"
+         data-dropdownMenuClass="dropdown-menu"
+         data-dropdownMenuType="div"
+         data-dropdownMenuItemClass=""
+         data-dropdownMenuItemType="none"
+         data-dropdownMenuItemLinkClass="dropdown-item">
+
+        <var class="atc_event hidden">
+            <var class="atc_date_start">2014-05-04 12:00:00</var>
+            <var class="atc_date_end">2014-05-04 18:00:00</var>
+            <var class="atc_timezone">America/Los_Angeles</var>
+            <var class="atc_title">Star Wars Day Party</var>
+            <var class="atc_description">May the force be with you</var>
+            <var class="atc_location">Tatooine</var>
+            <var class="atc_organizer">Luke Skywalker</var>
+            <var class="atc_organizer_email">luke@starwars.com</var>
+        </var>
+    </div>
+    
+    
+    
+    
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  
+    <!-- 5. Include script -->
+    <script src="/Assets/js/vendor/addtocalendar/atc.min.js"></script>
+  
+  </body>
 </html>
