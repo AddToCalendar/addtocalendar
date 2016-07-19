@@ -177,7 +177,7 @@
         return settings;
     };
 
-    addtocalendar.load = ready(function () {
+    addtocalendar.load = function () {
 
         var calendarsUrl = {
             'iCalendar':'ical',
@@ -303,6 +303,6 @@
 
             }
         }
-    });
+    };
     addtocalendar.load();
 })(window, document);
