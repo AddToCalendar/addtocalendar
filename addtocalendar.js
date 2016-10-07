@@ -119,6 +119,7 @@
         'de': 'In den Kalender',
         'en': 'Add to Calendar',
         'es': 'Añadir al Calendario',
+        'fi': 'Lisää kalenteriin',
         'fr': 'Ajouter au calendrier',
         'hi': 'कैलेंडर में जोड़ें',
         'in': 'Tambahkan ke Kalender',
@@ -126,6 +127,7 @@
         'ko': '캘린더에 추가',
         'pt': 'Adicionar ao calendário',
         'ru': 'Добавить в календарь',
+        'sv': 'Lägg till i kalender',
         'uk': 'Додати в календар',
         'zh': '添加到日历'
     };
