@@ -312,7 +312,7 @@
                     dom[tagnum].appendChild(atcb_link);
                     dom[tagnum].appendChild(atcb_list);
                 } else {
-                    atcb_link = dom[tagnum].querySelector('atcb-link');
+                    atcb_link = dom[tagnum].querySelector('.atcb-link');
                     atcb_link.parentNode.appendChild(atcb_list);
                     atcb_link.tabIndex = 1;
                     if (atcb_link.id == '') {
