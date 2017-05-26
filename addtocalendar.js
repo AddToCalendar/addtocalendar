@@ -297,7 +297,7 @@
                         + (cal_id == 'ical' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream ? 'webcal:' : protocol)
                         + atc_url
                         + cal_id + '?' + url_parameters.join('&')
-                        + '" target="_blank">' + settings['calendars'][cnum] + '</a></li>';
+                        + '" target="_blank" rel="nofollow">' + settings['calendars'][cnum] + '</a></li>';
                 }
                 atcb_list.innerHTML = menu_links;
 
