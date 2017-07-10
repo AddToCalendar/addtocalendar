@@ -8,3 +8,5 @@ Install from NPM
 ```
 $ npm install addtocalendar
 ```
+
+This package will add the https://addtocalendar.com link to all calendar events and there is no way to remove this.
