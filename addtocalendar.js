@@ -21,14 +21,14 @@
  SOFTWARE.
  */
 
-(function (w, d) {
+(function(w, d) {
     var
         atc_url = '//addtocalendar.com/atc/',
         atc_version = '1.5';
 
 
     if (!Array.indexOf) {
-        Array.prototype.indexOf = function (obj) {
+        Array.prototype.indexOf = function(obj) {
             for (var i = 0, l = this.length; i < l; i++) {
                 if (this[i] == obj) {
                     return i
@@ -39,7 +39,7 @@
     }
 
     if (!Array.prototype.map) {
-        Array.prototype.map = function (f) {
+        Array.prototype.map = function(f) {
             var result = [];
             for (var i = 0, l = this.length; i < l; i++) {
                 result.push(f(this[i]))
@@ -48,15 +48,15 @@
         }
     }
 
-    var isArray = function (obj) {
+    var isArray = function(obj) {
         return Object.prototype.toString.call(obj) === "[object Array]"
     };
 
-    var isFunc = function (obj) {
+    var isFunc = function(obj) {
         return Object.prototype.toString.call(obj) === "[object Function]"
     };
 
-    var ready = function (w, d) {
+    var ready = function(w, d) {
         var inited = false,
             loaded = false,
             queue = [],
@@ -88,12 +88,11 @@
                     var k = false;
                     try {
                         k = w.frameElement == null
-                    } catch (j) {
-                    }
+                    } catch (j) {}
                     if (b.doScroll && k) ie()
                 } else {
                     old = w.onload;
-                    w.onload = function (e) {
+                    w.onload = function(e) {
                         old(e);
                         go()
                     }
@@ -102,13 +101,13 @@
         }
 
         if (d.addEventListener) {
-            done = function () {
+            done = function() {
                 d.removeEventListener("DOMContentLoaded", done, false);
                 go()
             }
         } else {
             if (d.attachEvent) {
-                done = function () {
+                done = function() {
                     if (d.readyState === "complete") {
                         d.detachEvent("onreadystatechange", done);
                         go()
@@ -128,7 +127,7 @@
             go()
         }
 
-        return function (callback) {
+        return function(callback) {
             check();
             if (inited) {
                 callback.call(null)
@@ -156,12 +155,13 @@
         'sv': 'Lägg till i kalender',
         'uk': 'Додати в календар',
         'zh': '添加到日历',
-        'no': 'Legg til i kalender'
+        'no': 'Legg til i kalender',
+        'dk': 'Tilføj til kalender'
     };
 
     addtocalendar.calendar_urls = {}
 
-    addtocalendar.loadSettings = function (element) {
+    addtocalendar.loadSettings = function(element) {
         var settings = {
             'language': 'auto',
             'show-list-on': 'click',
@@ -173,10 +173,8 @@
                 'Yahoo! Calendar'
             ],
             'secure': 'auto',
-            'on-button-click': function () {
-            },
-            'on-calendar-click': function () {
-            }
+            'on-button-click': function() {},
+            'on-calendar-click': function() {}
         };
 
         for (var option in settings) {
@@ -206,7 +204,7 @@
         return settings;
     };
 
-    addtocalendar.load = function () {
+    addtocalendar.load = function() {
 
         var calendarsUrl = {
             'iCalendar': 'ical',
@@ -283,7 +281,7 @@
                 }
 
 
-                var atcb_link_id_val = (tag_id == '' ? '' : (tag_id + '_link') );
+                var atcb_link_id_val = (tag_id == '' ? '' : (tag_id + '_link'));
                 var atcb_list = document.createElement('ul');
                 atcb_list.className = 'atcb-list';
 
@@ -293,12 +291,12 @@
                         continue;
                     }
                     var cal_id = calendarsUrl[settings['calendars'][cnum]];
-                    var atcb_cal_link_id = (tag_id == '' ? '' : ('id="' + tag_id + '_' + cal_id + '_link"') );
-                    menu_links += '<li class="atcb-item"><a ' + atcb_cal_link_id + ' class="atcb-item-link" href="'
-                        + (cal_id == 'ical' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream ? 'webcal:' : protocol)
-                        + atc_url
-                        + cal_id + '?' + url_parameters.join('&')
-                        + '" target="_blank" rel="nofollow">' + settings['calendars'][cnum] + '</a></li>';
+                    var atcb_cal_link_id = (tag_id == '' ? '' : ('id="' + tag_id + '_' + cal_id + '_link"'));
+                    menu_links += '<li class="atcb-item"><a ' + atcb_cal_link_id + ' class="atcb-item-link" href="' +
+                        (cal_id == 'ical' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream ? 'webcal:' : protocol) +
+                        atc_url +
+                        cal_id + '?' + url_parameters.join('&') +
+                        '" target="_blank" rel="nofollow">' + settings['calendars'][cnum] + '</a></li>';
                 }
                 atcb_list.innerHTML = menu_links;
 
@@ -333,7 +331,7 @@
                     var item_link = item_links[varnum];
                     if (item_link.addEventListener) {
                         item_link.addEventListener('click', settings['on-calendar-click'], false);
-                    }else{
+                    } else {
                         item_link.attachEvent('onclick', settings['on-calendar-click']);
                     }
 
