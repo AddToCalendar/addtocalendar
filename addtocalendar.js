@@ -176,7 +176,8 @@
             'on-button-click': function () {
             },
             'on-calendar-click': function () {
-            }
+            },
+            'custom-html': {}
         };
 
         for (var option in settings) {
@@ -198,7 +199,13 @@
                     }
                     continue;
                 }
-
+                if (typeof settings[option] === "object") {
+                    var opts = eattr.replace(/\s*,\s*/g, ',').replace(/^\s+|\s+$/g, '').split(',');
+                    for (i in opts) {
+                        settings[option][opts[i].split(':')[0]] = opts[i].split(':')[1];
+                    }
+                    continue;
+                }
                 settings[option] = element.getAttribute(pname);
             }
         }
@@ -283,7 +290,7 @@
                 }
 
 
-                var atcb_link_id_val = (tag_id == '' ? '' : (tag_id + '_link') );
+                var atcb_link_id_val = (tag_id == '' ? '' : (tag_id + '_link'));
                 var atcb_list = document.createElement('ul');
                 atcb_list.className = 'atcb-list';
 
@@ -293,12 +300,13 @@
                         continue;
                     }
                     var cal_id = calendarsUrl[settings['calendars'][cnum]];
-                    var atcb_cal_link_id = (tag_id == '' ? '' : ('id="' + tag_id + '_' + cal_id + '_link"') );
+                    var atcb_cal_link_id = (tag_id == '' ? '' : ('id="' + tag_id + '_' + cal_id + '_link"'));
+                    var menu_item_html = settings['custom-html'].hasOwnProperty(settings['calendars'][cnum]) ? settings['custom-html'][settings['calendars'][cnum]] : settings['calendars'][cnum];
                     menu_links += '<li class="atcb-item"><a ' + atcb_cal_link_id + ' class="atcb-item-link" href="'
                         + (cal_id == 'ical' && /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream ? 'webcal:' : protocol)
                         + atc_url
                         + cal_id + '?' + url_parameters.join('&')
-                        + '" target="_blank" rel="nofollow">' + settings['calendars'][cnum] + '</a></li>';
+                        + '" target="_blank" rel="nofollow">' + menu_item_html + '</a></li>';
                 }
                 atcb_list.innerHTML = menu_links;
 
@@ -333,7 +341,7 @@
                     var item_link = item_links[varnum];
                     if (item_link.addEventListener) {
                         item_link.addEventListener('click', settings['on-calendar-click'], false);
-                    }else{
+                    } else {
                         item_link.attachEvent('onclick', settings['on-calendar-click']);
                     }
 
