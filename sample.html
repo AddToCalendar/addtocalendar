@@ -11,17 +11,11 @@
 </head>
 <body>
     <!-- 2. Include script -->
-    <script type="text/javascript">(function () {
-            if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
-            if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
-                var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-                s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
-                s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
-                var h = d[g]('body')[0];h.appendChild(s); }})();
+    <script type="text/javascript" src="addtocalendar.js">
     </script>
 
     <!-- 3. Place event data -->
-    <span class="addtocalendar atc-style-blue">
+    <span class="addtocalendar atc-style-blue " data-custom-html="iCalendar: <span class='ical'></span><span>iCal</span>, Google Calendar: <span class='gcal'></span><span>Google Calendar</span>, Outlook: <span class='outlook'></span><span>Outlook</span>">
         <var class="atc_event">
             <var class="atc_date_start">2014-05-04 12:00:00</var>
             <var class="atc_date_end">2014-05-04 18:00:00</var>
